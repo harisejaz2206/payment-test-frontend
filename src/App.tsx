@@ -17,6 +17,13 @@ import PayPalConfirmPlan from './components/paypal/PayPalConfirmPlan';
 import PayPalSuccess from './components/paypal/PayPalSuccess';
 import PayPalFailed from './components/paypal/PayPalFailed';
 import PaypalOneTimeButton from './components/paypal-onetime/PaypalButton';
+import Homepage from './pages/HomePage';
+import ContactUs from './pages/ContactUs';
+import PricingPlans from './pages/PricingPlans';
+import ProductFeatures from './pages/ProductFeatures';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import SetupForm from './pages/SetupForm';
 
 const stripePromise = loadStripe('pk_test_51NqDB7FUtqiloGGLtEWyVRgvWcwHw3JV21EB9FRIudrkCSPMCiJJRAImyKuZ45dcGpy3N6ZYkNBgpBiORto2IrA900R4CNW06K');
 
@@ -24,7 +31,13 @@ function App() {
   return (
     <Router>
       <Elements stripe={stripePromise}>
+        <div>
+        <Navbar />
         <Routes>
+         <Route path="/" element={<Homepage />} />
+         <Route path="/purchase" element={<SetupForm />} />
+          <Route path="/features" element={<ProductFeatures />} />
+          <Route path="/contact" element={<ContactUs />} />
           <Route path="/paypal" element={<PayPal />} />
           <Route path="/stripe" element={<Stripe />} />
           <Route path="/plans" element={<Plans />} />
@@ -39,6 +52,8 @@ function App() {
           <Route path="/paypal-failed" element={<PayPalFailed />} />
           <Route path="/paypal-onetime" element={<PaypalOneTimeButton />} />
         </Routes>
+        <Footer/>
+        </div>
       </Elements>
     </Router>
   );
